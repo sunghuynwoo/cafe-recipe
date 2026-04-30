@@ -1,0 +1,424 @@
+:root {
+  color-scheme: light;
+  --ink: #1f2328;
+  --muted: #757a83;
+  --line: #e8e2d7;
+  --surface: #fffdf9;
+  --card: #ffffff;
+  --brand: #ffd84d;
+  --brand-deep: #263d8f;
+  --mint: #b7ead5;
+  --coral: #ff8f70;
+  --shadow: 0 18px 48px rgba(37, 39, 44, 0.13);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(145deg, #fff4c9 0%, #f7fbff 46%, #fffaf2 100%);
+  color: var(--ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.app-shell {
+  width: min(100%, 480px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px 16px 28px;
+}
+
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding: 14px 0 12px;
+  background: linear-gradient(180deg, rgba(255, 248, 225, 0.96), rgba(255, 248, 225, 0.72));
+  backdrop-filter: blur(14px);
+}
+
+.hero__top,
+.dialog-head,
+.form-actions,
+.quick-panel,
+.card-head,
+.card-meta,
+.empty-state {
+  display: flex;
+  align-items: center;
+}
+
+.hero__top,
+.dialog-head,
+.card-head {
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--brand-deep);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.45rem;
+  line-height: 0.95;
+}
+
+.icon-button {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 50%;
+  background: var(--brand-deep);
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  box-shadow: 0 10px 24px rgba(38, 61, 143, 0.28);
+}
+
+.search-card {
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid rgba(31, 35, 40, 0.07);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 28px rgba(37, 39, 44, 0.08);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: #f4f6f8;
+  color: var(--muted);
+}
+
+.search-box input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.category-tabs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-button {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tab-button.is-active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.quick-panel {
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px 0 14px;
+}
+
+.quick-panel > div {
+  flex: 1;
+  min-height: 74px;
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 8px 22px rgba(37, 39, 44, 0.08);
+}
+
+.quick-panel span {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.quick-panel p {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.recipe-list {
+  display: grid;
+  gap: 12px;
+}
+
+.recipe-card {
+  padding: 16px;
+  border: 1px solid rgba(31, 35, 40, 0.07);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.recipe-card h3 {
+  font-size: 1.18rem;
+}
+
+.badge-row,
+.ingredient-list,
+.step-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #f0f3ff;
+  color: var(--brand-deep);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.badge.favorite {
+  background: #fff0cf;
+  color: #9b5f00;
+}
+
+.card-meta {
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.edit-button {
+  min-height: 36px;
+  padding: 0 13px;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #242424;
+  font-weight: 900;
+}
+
+.recipe-section {
+  margin-top: 14px;
+}
+
+.recipe-section strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.84rem;
+}
+
+.ingredient-list span,
+.step-list span {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #f7f7f4;
+  color: #41454d;
+  font-size: 0.88rem;
+}
+
+.step-list {
+  display: grid;
+}
+
+.memo {
+  padding: 10px 12px;
+  border-left: 4px solid var(--coral);
+  border-radius: 6px;
+  background: #fff6f2;
+  color: #5d4a44;
+  line-height: 1.5;
+}
+
+.empty-state {
+  min-height: 240px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px dashed #d5cdbf;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.64);
+  text-align: center;
+}
+
+.empty-state strong {
+  font-size: 1.1rem;
+}
+
+.empty-state p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.recipe-dialog {
+  width: min(calc(100% - 24px), 460px);
+  max-height: calc(100dvh - 24px);
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.recipe-dialog::backdrop {
+  background: rgba(20, 24, 31, 0.44);
+  backdrop-filter: blur(4px);
+}
+
+.recipe-form {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.recipe-form h2 {
+  font-size: 1.35rem;
+}
+
+.recipe-form label {
+  display: grid;
+  gap: 7px;
+  color: #3d424b;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.recipe-form input,
+.recipe-form select,
+.recipe-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  outline: 0;
+}
+
+.recipe-form input,
+.recipe-form select {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.recipe-form textarea {
+  min-height: 92px;
+  resize: vertical;
+  padding: 12px;
+  line-height: 1.5;
+}
+
+.recipe-form input:focus,
+.recipe-form select:focus,
+.recipe-form textarea:focus {
+  border-color: var(--brand-deep);
+  box-shadow: 0 0 0 3px rgba(38, 61, 143, 0.12);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.check-row {
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+}
+
+.check-row input {
+  min-height: auto;
+  accent-color: var(--brand-deep);
+}
+
+.form-actions {
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.primary-button,
+.danger-button,
+.ghost-button {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.primary-button {
+  flex: 1;
+  background: var(--brand-deep);
+  color: #fff;
+}
+
+.danger-button {
+  background: #fff0f0;
+  color: #c13434;
+}
+
+.ghost-button {
+  background: #eef1f5;
+  color: #4c535f;
+}
+
+@media (min-width: 700px) {
+  .app-shell {
+    padding-top: 28px;
+  }
+
+  .hero {
+    border-radius: 0 0 8px 8px;
+  }
+
+  h1 {
+    font-size: 3.25rem;
+  }
+}
