@@ -25,7 +25,7 @@ const seedRecipes = [
   }
 ];
 
-const categories = ["전체", "즐겨찾기", "커피", "라떼", "스무디", "에이드", "티", "디저트", "기타"];
+const categories = ["전체", "즐겨찾기"];
 
 const state = {
   recipes: loadRecipes(),
@@ -138,9 +138,6 @@ function getFilteredRecipes() {
     .filter((recipe) => {
       if (state.category === "즐겨찾기") {
         return recipe.favorite;
-      }
-      if (state.category !== "전체") {
-        return recipe.category === state.category;
       }
       return true;
     })
