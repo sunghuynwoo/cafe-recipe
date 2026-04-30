@@ -131,6 +131,14 @@ function render() {
       openForm(recipe);
     });
   });
+
+  // 메뉴명 클릭 시 뷰어 열기
+  recipeList.querySelectorAll("[data-view-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const recipe = state.recipes.find((item) => item.id === button.dataset.viewId);
+      openViewer(recipe);
+    });
+  });
 }
 
 function getFilteredRecipes() {
@@ -162,39 +170,71 @@ function createRecipeCard(recipe) {
     <article class="recipe-card">
       <div class="card-head">
         <div>
-          <h3>${escapeHtml(recipe.name)}</h3>
-          <div class="card-meta">
-            <div class="badge-row">
-              <span class="badge">${escapeHtml(recipe.category)}</span>
-              <span class="badge">${escapeHtml(recipe.level)}</span>
-              ${recipe.favorite ? '<span class="badge favorite">즐겨찾기</span>' : ""}
-            </div>
-          </div>
-        </div>
-        <button class="edit-button" type="button" data-edit-id="${recipe.id}">수정</button>
-      </div>
-
-      <div class="recipe-section">
-        <strong>재료</strong>
-        <div class="ingredient-list">
-          ${recipe.ingredients.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
+          <h3><button class="name-button" type="button" data-view-id="${recipe.id}">${escapeHtml(recipe.name)}</button></h3>
         </div>
       </div>
-
-      <div class="recipe-section">
-        <strong>제조 순서</strong>
-        <div class="step-list">
-          ${recipe.steps.map((step, index) => `<span>${index + 1}. ${escapeHtml(step)}</span>`).join("")}
-        </div>
-      </div>
-
-      ${
-        recipe.memo
-          ? `<div class="recipe-section"><p class="memo">${escapeHtml(recipe.memo)}</p></div>`
-          : ""
-      }
     </article>
   `;
+}
+
+function openViewer(recipe) {
+  if (!recipe) return;
+  const dialog = document.createElement('dialog');
+  dialog.className = 'recipe-dialog';
+  dialog.innerHTML = `
+    <div class="recipe-form">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">Recipe</p>
+          <h2>${escapeHtml(recipe.name)}</h2>
+        </div>
+        <div>
+          <button class="ghost-button viewer-edit" type="button">수정</button>
+          <button class="ghost-button viewer-close" type="button">닫기</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="card-meta">
+          <div class="badge-row">
+            <span class="badge">${escapeHtml(recipe.category)}</span>
+            <span class="badge">${escapeHtml(recipe.level)}</span>
+            ${recipe.favorite ? '<span class="badge favorite">즐겨찾기</span>' : ''}
+          </div>
+        </div>
+
+        <section class="recipe-section">
+          <strong>재료</strong>
+          <div class="ingredient-list">
+            ${recipe.ingredients.map((i) => `<span>${escapeHtml(i)}</span>`).join('')}
+          </div>
+        </section>
+
+        <section class="recipe-section">
+          <strong>제조 순서</strong>
+          <div class="step-list">
+            ${recipe.steps.map((s, idx) => `<span>${idx + 1}. ${escapeHtml(s)}</span>`).join('')}
+          </div>
+        </section>
+
+        ${recipe.memo ? `<div class="recipe-section"><p class="memo">${escapeHtml(recipe.memo)}</p></div>` : ''}
+      </div>
+    </div>
+  `;
+
+  dialog.addEventListener('click', (e) => {
+    if (e.target.classList.contains('viewer-close')) {
+      dialog.close();
+    }
+    if (e.target.classList.contains('viewer-edit')) {
+      dialog.close();
+      openForm(recipe);
+    }
+  });
+
+  dialog.addEventListener('close', () => dialog.remove());
+  document.body.appendChild(dialog);
+  dialog.showModal();
 }
 
 function openForm(recipe) {
